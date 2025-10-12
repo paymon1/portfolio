@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحلیلگر هوشمند سبد دارایی | شبیه‌ساز تأثیر کارمزد و استقلال مالی (SEO)</title>
+    <meta name="description" content="ابزار تعاملی رایگان برای تعیین پروفایل ریسک، تخصیص بهینه دارایی به صندوق‌های مدیریت شده (کاریزما، فیروزه)، پروژه‌های جمعی (دُنگی) و بازارهای جهانی (بایننس، نوبیتکس). شبیه‌ساز تأثیر کارمزد بر ثروت بلندمدت.">
+    <meta name="keywords" content="تخصیص دارایی هوشمند, تحلیلگر ریسک, ماشین حساب بازده, سرمایه‌گذاری جمعی, دُنگی, کاریزما, فیروزه, بایننس, نوبیتکس, تحلیل آنچین, شبیه‌ساز کارمزد">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        body {
+            font-family: 'Vazirmatn', 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            color: #1f2937;
+            line-height: 2.0;
+            font-size: 1.05rem;
+        }
+        .container {
+            max-width: 1300px;
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); /* Blue Gradient */
+        }
+        .section-title {
+            border-right: 6px solid #f59e0b; /* Amber accent */
+            padding-right: 15px;
+        }
+        .interactive-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 15px 30px rgba(29, 78, 216, 0.1);
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to left, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        .tool-link {
+            transition: all 0.3s;
+            display: block;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-weight: 600;
+            margin: 8px 0;
+            text-align: center;
+        }
+        .tool-link:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+        .fee-result-a { background-color: #e0f2f1; color: #00796b; }
+        .fee-result-b { background-color: #ffe0b2; color: #ff6f00; }
+        .fee-difference { background-color: #fee2e2; color: #dc2626; font-size: 1.5rem; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="container mx-auto bg-white rounded-[20px] shadow-2xl p-6 md:p-12 lg:p-16">
+
+        <header class="text-center mb-16 header-bg p-8 md:p-12 rounded-t-[16px] shadow-xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-snug">
+                تحلیلگر هوشمند سبد دارایی: <br> تعیین ریسک، کلید رشد پایدار
+            </h1>
+            <p class="text-xl md:text-3xl text-blue-200 mt-4">
+                طراحی یک پورتفولیو مقاوم با استفاده از ابزارهای بومی و جهانی
+            </p>
+        </header>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 section-title mb-8">
+                فصل ۱. سنجش و تخصیص: محاسبه سبد بهینه شما
+            </h2>
+            <p class="text-gray-700 mb-8">
+                ریسک‌پذیری شما، نقشه راه پورتفولیو است. با تنظیم لغزنده زیر، ببینید که چگونه تخصیص دارایی شما به طور پویا تغییر می‌کند و پتانسیل نهایی ثروت شما چقدر خواهد بود.
+            </p>
+
+            <div id="risk-analyzer-app" class="interactive-card p-6 md:p-10 rounded-xl">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6 text-center">ورودی‌ها و پروفایل ریسک</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="input-group"><label for="initialCapital">سرمایه اولیه (ریال/تتر)</label>
+                        <input type="number" id="initialCapital" value="50000000" min="0" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" dir="ltr" oninput="calculatePortfolio()"></div>
+                    <div class="input-group"><label for="monthlySaving">واریز ماهانه (ریال/تتر)</label>
+                        <input type="number" id="monthlySaving" value="5000000" min="0" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" dir="ltr" oninput="calculatePortfolio()"></div>
+                    <div class="input-group"><label for="timeHorizon">افق زمانی (سال)</label>
+                        <input type="number" id="timeHorizon" value="15" min="1" max="50" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" dir="ltr" oninput="calculatePortfolio()"></div>
+                    <div class="input-group"><label for="inflationRate">تخمین تورم (سالانه %)</label>
+                        <input type="number" id="inflationRate" value="25" min="0" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" dir="ltr" oninput="calculatePortfolio()"></div>
+                </div>
+
+                <div class="input-group mb-10">
+                    <label class="text-xl font-bold text-gray-800 mb-2">میزان ریسک‌پذیری شما:</label>
+                    <input type="range" id="riskTolerance" min="0" max="100" value="50" step="1" oninput="calculatePortfolio()">
+                    <div class="flex justify-between text-sm mt-2">
+                        <span class="risk-label text-green-600" id="low-risk-label">محافظه‌کار (0)</span>
+                        <span class="risk-label text-red-600" id="high-risk-label">تهاجمی (100)</span>
+                    </div>
+                </div>
+
+                <div id="results-area" class="mt-10 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h4 class="text-xl font-extrabold text-blue-800 mb-4">تخصیص پیشنهادی و نتیجه مالی</h4>
+                    
+                    <div class="mb-6">
+                        <p class="font-medium mb-2 text-gray-700">ترکیب سبد دارایی بر اساس پروفایل شما:</p>
+                        <div class="flex h-8 rounded-lg overflow-hidden border border-gray-300" id="allocation-chart"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-semibold mb-6" id="allocation-details"></div>
+
+                    <div class="mt-6 border-t pt-4">
+                        <p class="text-lg font-medium text-gray-700">بازدهی سالانه مورد انتظار این سبد: <span id="expectedReturn" class="text-blue-700 font-extrabold"></span></p>
+                        <p class="text-lg font-medium text-gray-700">پتانسیل ثروت نهایی پس از <span id="finalYears"></span> سال:</p>
+                        <p class="text-4xl font-extrabold text-green-700 mt-1">
+                            <span id="finalValue">0</span> <span class="text-xl">واحد</span>
+                        </p>
+                        <p class="text-red-700 mt-2">قدرت خرید حقیقی با لحاظ تورم (تخمین): <span id="realValue" class="font-bold"></span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="h-px bg-gray-300 my-16"></div>
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 section-title mb-8">
+                فصل ۲. بزرگترین دشمن خاموش: شبیه‌ساز تأثیر کارمزد بر ثروت
+            </h2>
+            <p class="text-gray-700 mb-8">
+                اختلاف جزئی در کارمزد (چه مدیریت صندوق، چه کارمزد معاملات) در طول ۲۰ سال می‌تواند صدها میلیون تومان از ثروت شما را ببلعد. با این ابزار، تأثیر انتخاب پلتفرم‌های کم‌هزینه و کم‌کارمزد را مشاهده کنید.
+            </p>
+
+            <div id="fee-simulator-app" class="interactive-card p-6 md:p-10 rounded-xl">
+                <h3 class="text-2xl font-bold text-yellow-700 mb-6 text-center">ماشین حساب هزینه فرصت کارمزد</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="input-group"><label for="feeInitial">سرمایه اولیه</label>
+                        <input type="number" id="feeInitial" value="100000000" min="0" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500" dir="ltr"></div>
+                    <div class="input-group"><label for="feeTime">افق زمانی (سال)</label>
+                        <input type="number" id="feeTime" value="20" min="1" max="50" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500" dir="ltr"></div>
+                    <div class="input-group"><label for="feeReturn">بازده سالانه ناخالص (%)</label>
+                        <input type="number" id="feeReturn" value="30" min="0" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500" dir="ltr"></div>
+                    <div class="input-group"><label for="feeA">کارمزد پلتفرم A (سالانه %)</label>
+                        <input type="number" id="feeA" value="0.5" min="0" max="10" step="0.1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500" dir="ltr"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="input-group"><label for="feeB">کارمزد پلتفرم B (سالانه %)</label>
+                        <input type="number" id="feeB" value="2.0" min="0" max="10" step="0.1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500" dir="ltr"></div>
+                    <button onclick="calculateFeeImpact()" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 rounded-lg text-lg transition duration-300 shadow-md mt-6 md:mt-0">
+                        محاسبه زیان کارمزد
+                    </button>
+                </div>
+
+                <div id="feeResult" class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg hidden">
+                    <h4 class="text-xl font-extrabold text-yellow-800 mb-4">مقایسه نهایی سرمایه</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 rounded-lg fee-result-a shadow-md">
+                            <p class="font-medium">پلتفرم A (کارمزد کم)</p>
+                            <p class="text-3xl font-extrabold" id="valueA">0</p>
+                        </div>
+                        <div class="p-4 rounded-lg fee-result-b shadow-md">
+                            <p class="font-medium">پلتفرم B (کارمزد بالا)</p>
+                            <p class="text-3xl font-extrabold" id="valueB">0</p>
+                        </div>
+                        <div class="p-4 rounded-lg fee-difference shadow-md">
+                            <p class="font-medium">سود از دست رفته (تفاوت نهایی)</p>
+                            <p class="text-3xl font-extrabold" id="differenceValue">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="h-px bg-gray-300 my-16"></div>
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 section-title mb-8">
+                فصل ۳. ابزارهای هسته (Core): ثبات، مدیریت و تأمین مالی جمعی
+            </h2>
+            <p class="text-gray-700 mb-6">
+                بخش هسته پورتفولیو، شامل دارایی‌های مدیریت شده‌ای است که ریسک نوسانات بالا را کاهش می‌دهند. در این بخش، ابزارهای تخصصی بومی نقش حیاتی دارند.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-slate-700 mt-8 mb-4">
+                ۳.۱. مدیریت حرفه‌ای دارایی و صندوق‌ها
+            </h3>
+            <p class="text-gray-700 mb-6">
+                صندوق‌های سرمایه‌گذاری (چه درآمد ثابت و چه سهامی) بهترین راه برای به دست آوردن تنوع‌بخشی فوری و مدیریت تخصصی هستند. این صندوق‌ها توسط تیم‌های تحلیل حرفه‌ای اداره می‌شوند و برای بخش محافظه‌کار سبد شما ایده‌آلند.
+                از خدمات پلتفرم **فیروزه** می‌توانید برای انتخاب و مدیریت سبد سهام و صندوق‌های خود استفاده کنید. اگر به دنبال طراحی یک نقشه راه بلندمدت و سفارشی هستید، **کاریزما** می‌تواند یک رویکرد مدیریت ثروت شخصی‌سازی شده را ارائه دهد، چرا که خدمات سرمایه‌گذاری متعددی از جمله صندوق‌های طلا، نقره و درآمد ثابت را ارائه می‌دهد.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <a href="https://app.firouzeh.com/?referral_code=D9OKC" target="_blank" rel="nofollow noopener" class="tool-link bg-green-600 text-white hover:bg-green-700">ثبت نام در پلتفرم فیروزه (Firouzeh)</a>
+                <a href="https://axon.charisma.ir/l?mRef=10h6a3" target="_blank" rel="nofollow noopener" class="tool-link bg-emerald-600 text-white hover:bg-emerald-700">دریافت خدمات مشاوره از کاریزما (Charisma)</a>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-slate-700 mt-12 mb-4">
+                ۳.۲. تأمین مالی جمعی (Crowdfunding) و هم‌افزایی سرمایه
+            </h3>
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                <p class="text-gray-800 mb-4">
+                    **تأمین مالی جمعی** (Crowdfunding) به شما امکان می‌دهد تا در پروژه‌های واقعی اقتصادی (مانند تولید، کشاورزی یا فناوری) مشارکت کنید. این یک دارایی **ناهمبسته** است که مستقیماً به عملکرد بازار سهام یا رمزارز وابسته نیست و می‌تواند بازدهی قابل توجهی داشته باشد.
+                </p>
+                <p class="text-gray-800 mb-4 font-bold">
+                    پلتفرم‌هایی مانند **دُنگی (Dongi)** این امکان را فراهم می‌کنند تا سرمایه‌گذاران به صورت مشترک در فرصت‌های تأیید شده مشارکت کنند، که برای بخش میانی تا ریسکی سبد شما (بین صندوق و رمزارز) عالی است.
+                </p>
+                <a href="https://dongi.ir/user/nlogin/?ref=Xu1HY" target="_blank" rel="nofollow noopener" class="tool-link bg-orange-600 text-white hover:bg-orange-700">مشارکت در پروژه‌های تأمین مالی جمعی با دُنگی (Dongi)</a>
+            </div>
+        </section>
+
+        <div class="h-px bg-gray-300 my-16"></div>
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 section-title mb-8">
+                فصل ۴. ابزارهای ماهواره (Satellite): رشد تهاجمی و تحلیل داده
+            </h2>
+            <p class="text-gray-700 mb-6">
+                بخش ماهواره برای کسب **آلفا (Alpha)** یا بازدهی بالاتر از شاخص بازار طراحی شده است. این بخش شامل رمزارزها و ابزارهایی است که به شما دید عمیقی از جریان پول می‌دهند.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-slate-700 mt-8 mb-4">
+                ۴.۱. صرافی‌های ورودی و جهانی
+            </h3>
+            <p class="text-gray-700 mb-6">
+                برای خرید و فروش رمزارز، نقدینگی، سرعت و امنیت بالاترین اولویت را دارند. شما به دروازه‌های ریالی (مانند **نوبیتکس، والکس، بیت پین، تبدیل**) و یک پلتفرم با عمق جهانی (مانند **بایننس**) نیاز دارید:
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
+                <a href="https://nobitex.ir/signup/?refcode=2817185" target="_blank" rel="nofollow noopener" class="tool-link bg-slate-700 text-white hover:bg-slate-800">نوبیتکس</a>
+                <a href="https://wallex.ir/signup?ref=zc3hbde" target="_blank" rel="nofollow noopener" class="tool-link bg-slate-700 text-white hover:bg-slate-800">والکس</a>
+                <a href="https://bitpin.ir/signup/?refcode=z4ylqbfjht" target="_blank" rel="nofollow noopener" class="tool-link bg-slate-700 text-white hover:bg-slate-800">بیت پین</a>
+                <a href="https://tabdeal.org/?ref=2imfj5" target="_blank" rel="nofollow noopener" class="tool-link bg-slate-700 text-white hover:bg-slate-800">تبدیل</a>
+                <a href="https://www.binance.com/en/register?ref=40743169" target="_blank" rel="nofollow noopener" class="tool-link bg-yellow-500 text-slate-900 hover:bg-yellow-600">بایننس (Binance)</a>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-slate-700 mt-12 mb-4">
+                ۴.۲. تحلیل داده‌های آنچین (On-Chain Analysis)
+            </h3>
+            <p class="text-gray-700 mb-6">
+                در بازار رمزارزها، تصمیمات باید بر پایه داده‌های واقعی (آنچین) باشد. پلتفرم‌های تحلیل داده، جریان پول نهادی و کیف پول‌های بزرگ را ردیابی می‌کنند. **آرکهام (Arkhm)** در شناسایی نهادهای بزرگ و **سوسو ولیو (Sosovalue)** در ارائه فیدهای معاملاتی و داده‌های قیمتی به‌روز می‌توانند دید استراتژیک شما را در معاملات رمزارز تقویت کنند.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <a href="https://auth.arkm.com/register?ref=8b98dceb-303b-4966-9261-24df8e29d874" target="_blank" rel="nofollow noopener" class="tool-link bg-blue-500 text-white hover:bg-blue-600">آرکهام (Arkhm) - ردیابی کیف پول نهادی</a>
+                <a href="https://sosovalue.com/join/0DCN0PVQ" target="_blank" rel="nofollow noopener" class="tool-link bg-pink-500 text-white hover:bg-pink-600">سوسو ولیو (Sosovalue) - تحلیل داده‌های قیمت</a>
+            </div>
+        </section>
+
+        <script>
+            // نگاشت رنگ ها برای نمودار
+            const COLOR_MAP = {
+                "صندوق‌های مدیریت شده (کاریزما/فیروزه)": "#10b981", // Emerald - کم ریسک
+                "تأمین مالی جمعی (دُنگی)": "#f59e0b", // Amber - ریسک متوسط
+                "رمزارز و ابزارهای نوین (Binance/Nobitex)": "#ef4444", // Red - پر ریسک
+                "نقدی / درآمد ثابت": "#3b82f6" // Blue - بسیار کم ریسک
+            };
+
+            // تعریف بازدهی مورد انتظار برای هر سطح ریسک (برای مثال)
+            const BASE_RETURNS = {
+                'محافظه‌کار': 15, // Low Risk
+                'متوسط': 25,     // Medium Risk
+                'تهاجمی': 40     // High Risk
+            };
+
+            // تخصیص بر اساس پروفایل ریسک (0=محافظه‌کار، 100=تهاجمی)
+            function getAllocation(risk) {
+                // Low Risk (Cash/Managed) decreases, High Risk (Crypto/Crowdfund) increases
+                const cashBase = 40;
+                const managedBase = 35;
+                const crowdfundingBase = 15;
+                const cryptoBase = 10;
+                
+                // Adjustment factor (from -1 to 1)
+                const adjFactor = (risk - 50) / 50;
+
+                const crypto = Math.min(60, cryptoBase + (adjFactor * 20));
+                const crowdfunding = Math.min(30, crowdfundingBase + (adjFactor * 10));
+
+                const totalRisk = crypto + crowdfunding;
+                const remainingManaged = 100 - totalRisk;
+
+                let allocations = {
+                    "نقدی / درآمد ثابت": Math.round(remainingManaged * (cashBase / (cashBase + managedBase))),
+                    "صندوق‌های مدیریت شده (کاریزما/فیروزه)": Math.round(remainingManaged * (managedBase / (cashBase + managedBase))),
+                    "تأمین مالی جمعی (دُنگی)": Math.round(crowdfunding),
+                    "رمزارز و ابزارهای نوین (Binance/Nobitex)": Math.round(crypto),
+                };
+
+                let currentSum = Object.values(allocations).reduce((a, b) => a + b, 0);
+                if (currentSum !== 100) {
+                    allocations["نقدی / درآمد ثابت"] += (100 - currentSum);
+                }
+
+                return allocations;
+            }
+
+            // تابع محاسبات ماشین حساب ریسک (فصل ۱)
+            function calculatePortfolio() {
+                const risk = parseInt(document.getElementById('riskTolerance').value);
+                const P = parseFloat(document.getElementById('initialCapital').value) || 0;
+                const C = parseFloat(document.getElementById('monthlySaving').value) || 0;
+                const t = parseInt(document.getElementById('timeHorizon').value) || 0;
+                const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100 || 0;
+                const n = 12; // Compounded monthly
+                
+                if (P < 0 || C < 0 || t < 1) { return; }
+
+                const allocations = getAllocation(risk);
+
+                // Determine Expected Return
+                let expectedReturn;
+                if (risk <= 33) {
+                    expectedReturn = BASE_RETURNS['محافظه‌کار'];
+                } else if (risk <= 66) {
+                    expectedReturn = BASE_RETURNS['متوسط'];
+                } else {
+                    expectedReturn = BASE_RETURNS['تهاجمی'];
+                }
+
+                const r = expectedReturn / 100;
+                let finalAmount = P * Math.pow((1 + r / n), n * t);
+                let futureValueAnnuity = 0;
+                for (let k = 1; k <= n * t; k++) {
+                    futureValueAnnuity += C * Math.pow((1 + r / n), n * t - k);
+                }
+                finalAmount += futureValueAnnuity;
+                const realFinalValue = finalAmount / Math.pow((1 + inflationRate), t);
+                
+                const formatter = new Intl.NumberFormat('fa-IR', {
+                    style: 'decimal',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+
+                // Update UI elements
+                document.getElementById('expectedReturn').innerText = formatter.format(expectedReturn) + '%';
+                document.getElementById('finalYears').innerText = formatter.format(t);
+                document.getElementById('finalValue').innerText = formatter.format(finalAmount);
+                document.getElementById('realValue').innerText = formatter.format(realFinalValue) + ' واحد (قدرت خرید امروز)';
+
+                // Update Allocation Chart and Details
+                const chartContainer = document.getElementById('allocation-chart');
+                const detailsContainer = document.getElementById('allocation-details');
+                chartContainer.innerHTML = '';
+                detailsContainer.innerHTML = '';
+                let detailHtml = '';
+
+                for (const [asset, percentage] of Object.entries(allocations)) {
+                    if (percentage > 0) {
+                        const color = COLOR_MAP[asset] || '#6b7280';
+                        const bar = document.createElement('div');
+                        bar.style.width = `${percentage}%`;
+                        bar.style.backgroundColor = color;
+                        bar.title = `${asset}: ${percentage}%`;
+                        chartContainer.appendChild(bar);
+
+                        detailHtml += `
+                            <div class="p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                                <p class="text-xs font-medium text-gray-500">${asset.split('(')[0]}</p>
+                                <p class="text-xl font-extrabold" style="color: ${color};">${percentage}%</p>
+                            </div>
+                        `;
+                    }
+                }
+                detailsContainer.innerHTML = detailHtml;
+            }
+
+            // تابع محاسبات ماشین حساب کارمزد (فصل ۲)
+            function calculateFeeImpact() {
+                const P = parseFloat(document.getElementById('feeInitial').value) || 0;
+                const t = parseInt(document.getElementById('feeTime').value) || 0;
+                const grossReturn = parseFloat(document.getElementById('feeReturn').value) / 100 || 0;
+                const feeA = parseFloat(document.getElementById('feeA').value) / 100 || 0;
+                const feeB = parseFloat(document.getElementById('feeB').value) / 100 || 0;
+                const n = 1; // Compounded annually for simplicity
+
+                if (P < 0 || t < 1 || grossReturn < 0 || feeA < 0 || feeB < 0) {
+                    alert('لطفاً مقادیر معتبر و مثبت را وارد کنید.');
+                    return;
+                }
+
+                // Net Return = Gross Return - Fee
+                const netReturnA = grossReturn - feeA;
+                const netReturnB = grossReturn - feeB;
+                
+                // Future Value = P * (1 + R_net)^t
+                const finalValueA = P * Math.pow((1 + netReturnA), t);
+                const finalValueB = P * Math.pow((1 + netReturnB), t);
+
+                const difference = finalValueA - finalValueB;
+
+                const formatter = new Intl.NumberFormat('fa-IR', {
+                    style: 'decimal',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+
+                document.getElementById('valueA').innerText = formatter.format(finalValueA);
+                document.getElementById('valueB').innerText = formatter.format(finalValueB);
+                document.getElementById('differenceValue').innerText = formatter.format(difference);
+                document.getElementById('feeResult').classList.remove('hidden');
+
+                document.getElementById('feeResult').scrollIntoView({ behavior: 'smooth' });
+            }
+
+
+            // اجرای توابع در هنگام بارگذاری
+            window.onload = function() {
+                calculatePortfolio();
+            };
+        </script>
+
+        <footer class="pt-10 mt-16 border-t-4 border-blue-600 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-800 mb-4">
+                جمع‌بندی: انضباط در اجرا و مدیریت ریسک
+            </h2>
+            <p class="text-xl text-gray-700 max-w-5xl mx-auto">
+                سبد سرمایه‌گذاری شما یک موجود زنده است که باید به طور مداوم با اهداف مالی و افق زمانی شما هماهنگ شود. تخصیص دارایی اولین و مهم‌ترین تصمیم شماست. با استفاده از ابزارهای بومی و جهانی معرفی شده، انضباط لازم برای اجرای استراتژی خود را حفظ کنید و همواره از ابزارهای تحلیلی برای تصمیم‌گیری آگاهانه بهره بگیرید.
+            </p>
+            <p class="text-2xl font-bold text-blue-700 mt-6">
+                فراموش نکنید: موفقیت مالی از یک برنامه شروع می‌شود، نه یک شانس.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+```eof
